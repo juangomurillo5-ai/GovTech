@@ -1,0 +1,122 @@
+:root {
+    --primary-color: #1A365D;
+    --accent-color: #2563EB;
+    --text-main: #1F2937;
+    --text-muted: #6B7280;
+    --bg-light: #F9FAFB;
+    --white: #FFFFFF;
+    --transition: all 0.3s ease;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; scroll-behavior: smooth; }
+
+body { background-color: var(--bg-light); color: var(--text-main); line-height: 1.6; }
+
+/* Navbar */
+nav { position: fixed; top: 0; width: 100%; padding: 20px 50px; display: flex; justify-content: space-between; align-items: center; transition: var(--transition); z-index: 1000; }
+nav.scrolled { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); padding: 15px 50px; }
+.logo { font-size: 24px; font-weight: 800; color: var(--primary-color); }
+.nav-links { list-style: none; display: flex; gap: 30px; align-items: center; }
+.nav-links a { text-decoration: none; color: var(--text-main); font-weight: 600; transition: var(--transition); }
+.nav-links a:hover { color: var(--accent-color); }
+.btn-nav { background: var(--accent-color); color: var(--white) !important; padding: 10px 20px; border-radius: 8px; }
+
+/* Hero */
+.hero { position: relative; height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; background: linear-gradient(135deg, #f0f4ff 0%, #ffffff 100%); padding: 0 20px; overflow: hidden; }
+.hero-content { position: relative; z-index: 2; max-width: 800px; margin-top: 60px; }
+.hero h1 { font-size: 3.5rem; font-weight: 800; color: var(--primary-color); line-height: 1.2; margin-bottom: 20px; }
+.highlight { color: var(--accent-color); }
+.hero p { font-size: 1.2rem; color: var(--text-muted); margin-bottom: 40px; }
+.cta-primary { background: var(--primary-color); color: var(--white); padding: 15px 35px; border-radius: 8px; text-decoration: none; font-weight: 600; display: inline-block; transition: var(--transition); }
+.cta-primary:hover { background: var(--accent-color); transform: translateY(-3px); }
+
+/* Animación Figuras */
+.bg-shapes { position: absolute; top: 0; left: 0; width: 100%; height: 100%; overflow: hidden; z-index: 1; }
+.bg-shapes li { position: absolute; list-style: none; background: rgba(37, 99, 235, 0.08); animation: animateShapes 25s linear infinite; bottom: -150px; }
+.bg-shapes li:nth-child(1) { left: 25%; width: 80px; height: 80px; }
+.bg-shapes li:nth-child(2) { left: 10%; width: 20px; height: 20px; animation-duration: 12s; }
+.bg-shapes li:nth-child(3) { left: 70%; width: 20px; height: 20px; animation-delay: 4s; }
+.bg-shapes li:nth-child(4) { left: 40%; width: 60px; height: 60px; animation-duration: 18s; }
+.bg-shapes li:nth-child(5) { left: 65%; width: 20px; height: 20px; }
+.bg-shapes li:nth-child(6) { left: 75%; width: 110px; height: 110px; animation-delay: 3s; }
+@keyframes animateShapes { 0% { transform: translateY(0) rotate(0deg); opacity: 1; border-radius: 0; } 100% { transform: translateY(-1000px) rotate(720deg); opacity: 0; border-radius: 50%; } }
+
+/* Trust Banner & Secciones */
+.trust-banner { background: var(--white); padding: 30px; text-align: center; border-bottom: 1px solid #E5E7EB; }
+.trust-logos { display: flex; justify-content: center; gap: 40px; color: #9CA3AF; font-weight: 600; margin-top: 10px;}
+.section-title { text-align: center; margin-bottom: 60px; }
+.section-title h2 { font-size: 2.5rem; color: var(--primary-color); }
+.steps-section, .features-section, .faq-section { padding: 80px 20px; }
+.steps-container, .features-grid { display: flex; justify-content: center; gap: 30px; max-width: 1000px; margin: 0 auto; flex-wrap: wrap; }
+.step, .feature-card { background: var(--white); padding: 30px; border-radius: 12px; width: 300px; text-align: center; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
+.step-number { background: var(--accent-color); color: var(--white); width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; margin: 0 auto 20px; }
+.icon-wrapper { font-size: 40px; color: var(--accent-color); margin-bottom: 20px; }
+
+/* FAQ */
+.faq-container { max-width: 800px; margin: 0 auto; }
+.faq-item { border-bottom: 1px solid #E5E7EB; margin-bottom: 10px; }
+.faq-question { width: 100%; background: none; border: none; text-align: left; padding: 20px 0; font-size: 1.1rem; font-weight: 600; color: var(--primary-color); cursor: pointer; display: flex; justify-content: space-between; }
+.faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; }
+.faq-answer p { padding-bottom: 20px; color: var(--text-muted); }
+
+/* Footer */
+footer { background: var(--primary-color); color: var(--white); text-align: center; padding: 40px 20px; }
+.footer-logo { font-size: 24px; font-weight: bold; margin-bottom: 10px; }
+.credits { margin-top: 20px; font-size: 0.9rem; color: #9CA3AF; border-top: 1px solid #374151; padding-top: 15px; }
+
+/* =========================================
+   MODALES (Login & Simulador)
+   ========================================= */
+.modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15,23,42,0.7); backdrop-filter: blur(8px); display: flex; justify-content: center; align-items: center; z-index: 2000; opacity: 0; visibility: hidden; transition: var(--transition); }
+.modal-overlay.active { opacity: 1; visibility: visible; }
+.modal-content { background: var(--white); padding: 40px; border-radius: 16px; width: 100%; max-width: 400px; position: relative; transform: translateY(20px); transition: all 0.4s; }
+.modal-overlay.active .modal-content { transform: translateY(0); }
+.modal-large { max-width: 500px; }
+.close-btn { position: absolute; top: 20px; right: 20px; background: none; border: none; font-size: 24px; cursor: pointer; color: var(--text-muted); }
+.modal-header { text-align: center; margin-bottom: 25px; }
+
+/* Formularios */
+.input-group { margin-bottom: 20px; text-align: left; }
+.input-group label { display: block; font-weight: 600; margin-bottom: 8px; font-size: 0.9rem; }
+.input-group input { width: 100%; padding: 12px; border: 1px solid #E5E7EB; border-radius: 8px; outline: none; }
+.btn-submit { width: 100%; background: var(--primary-color); color: var(--white); border: none; padding: 15px; border-radius: 8px; font-weight: 600; cursor: pointer; transition: 0.3s; }
+.btn-submit:hover { background: var(--accent-color); }
+
+/* Simulador UI */
+.step-view { display: none; }
+.step-view.active { display: block; animation: fadeIn 0.4s; }
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+.drop-zone { border: 2px dashed #D1D5DB; padding: 40px; text-align: center; border-radius: 12px; cursor: pointer; background: #F3F4F6; }
+.drop-zone i { font-size: 50px; color: var(--accent-color); margin-bottom: 10px; }
+.file-info { background: #E5E7EB; padding: 15px; border-radius: 8px; display: flex; flex-direction: column; align-items: center; gap: 15px; }
+.camera-sim { background: #1F2937; height: 250px; border-radius: 12px; position: relative; display: flex; flex-direction: column; justify-content: center; align-items: center; color: white; margin-bottom: 20px; }
+.face-overlay { position: absolute; width: 150px; height: 180px; border: 2px solid var(--accent-color); border-radius: 50%; }
+.progress-bar-container { width: 100%; height: 8px; background: #E5E7EB; border-radius: 10px; overflow: hidden; }
+.progress-fill { height: 100%; background: var(--accent-color); width: 0%; transition: width 0.3s; }
+.success-icon { font-size: 50px; color: #10B981; margin-bottom: 10px; }
+.certificate-preview { border: 1px solid #E5E7EB; padding: 20px; border-radius: 8px; margin-bottom: 20px; background: #f9fafb; text-align: left; }
+.qr-placeholder { text-align: center; padding: 15px; margin-top: 15px; background: white; border: 1px dashed #ccc; }
+.qr-placeholder i { font-size: 60px; }
+/* =========================================
+   DISEÑO RESPONSIVE (MÓVILES Y TABLETS) - LANDING PAGE
+   ========================================= */
+@media (max-width: 768px) {
+    /* Navegación */
+    nav { padding: 15px 20px; }
+    .nav-links li:not(:last-child) { display: none; } /* Oculta los links de texto, deja solo el botón Acceder */
+    
+    /* Hero Section */
+    .hero h1 { font-size: 2.2rem; }
+    .hero p { font-size: 1rem; }
+    .cta-primary { width: 100%; text-align: center; }
+
+    /* Modales */
+    .modal-content { padding: 30px 20px; width: 90%; }
+    .camera-sim { height: 200px; }
+    .face-overlay { width: 120px; height: 150px; }
+
+    /* Secciones Generales */
+    .section-title h2 { font-size: 2rem; }
+    .steps-section, .features-section, .faq-section { padding: 50px 20px; }
+    .trust-logos { flex-direction: column; gap: 20px; }
+}

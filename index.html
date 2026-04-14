@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GovTech - Ecosistema de Integridad Documental</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <nav id="navbar">
+        <div class="logo">
+            <i class="fa-solid fa-file-shield"></i> GovTech
+        </div>
+        <ul class="nav-links">
+            <li><a href="#inicio">Inicio</a></li>
+            <li><a href="#como-funciona">Cómo Funciona</a></li>
+            <li><a href="#beneficios">Beneficios</a></li>
+            <li><a href="#" class="btn-nav" id="btnAcceder">Acceder</a></li>
+        </ul>
+    </nav>
+
+    <header id="inicio" class="hero">
+        <ul class="bg-shapes">
+            <li></li><li></li><li></li><li></li><li></li>
+            <li></li><li></li><li></li><li></li><li></li>
+        </ul>
+
+        <div class="hero-content">
+            <h1>Seguridad jurídica digital, <br><span class="highlight">sin filas ni fraudes.</span></h1>
+            <p>La plataforma de notarización digital que convierte tus documentos en activos infalsificables mediante biometría y sellos criptográficos.</p>
+            <a href="#" class="cta-primary" id="btnSimulador">Descubre cómo funciona</a>
+        </div>
+    </header>
+
+    <div class="trust-banner">
+        <p>Tecnología diseñada con estándares de:</p>
+        <div class="trust-logos">
+            <span><i class="fa-solid fa-building-columns"></i> Entidades Financieras</span>
+            <span><i class="fa-solid fa-scale-balanced"></i> Estándares Legales</span>
+            <span><i class="fa-solid fa-shield-halved"></i> Criptografía SHA-256</span>
+        </div>
+    </div>
+
+    <section id="como-funciona" class="steps-section">
+        <div class="section-title">
+            <h2>Notariza en 3 pasos</h2>
+            <p>Sin filas, sin papeleos. Todo desde tu dispositivo.</p>
+        </div>
+        <div class="steps-container">
+            <div class="step">
+                <div class="step-number">1</div>
+                <h3>Sube tu documento</h3>
+                <p>Arrastra tu contrato o certificado en formato PDF a nuestra bóveda segura.</p>
+            </div>
+            <div class="step">
+                <div class="step-number">2</div>
+                <h3>Valida tu Identidad</h3>
+                <p>La cámara verifica tu rostro en tiempo real para asegurar la prueba de vida.</p>
+            </div>
+            <div class="step">
+                <div class="step-number">3</div>
+                <h3>Recibe tu Sello</h3>
+                <p>Tu documento obtiene un código QR inmutable listo para ser verificado por terceros.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="beneficios" class="features-section">
+        <div class="section-title">
+            <h2>Pilares de Innovación</h2>
+            <p>Tecnología de punta para garantizar la verdad en cada trámite.</p>
+        </div>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="icon-wrapper"><i class="fa-solid fa-face-viewfinder"></i></div>
+                <h3>Biometría Activa</h3>
+                <p>Prueba de vida mediante reconocimiento facial en tiempo real al momento de firmar.</p>
+            </div>
+            <div class="feature-card">
+                <div class="icon-wrapper"><i class="fa-solid fa-fingerprint"></i></div>
+                <h3>Sello Criptográfico</h3>
+                <p>Generación de huellas digitales (SHA-256) que detectan cualquier alteración al instante.</p>
+            </div>
+            <div class="feature-card">
+                <div class="icon-wrapper"><i class="fa-solid fa-stopwatch"></i></div>
+                <h3>Gestión Inteligente</h3>
+                <p>Procesamiento de requisiciones basado en prioridad y urgencia legal.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="faq-section">
+        <div class="section-title">
+            <h2>Preguntas Frecuentes</h2>
+        </div>
+        <div class="faq-container">
+            <div class="faq-item">
+                <button class="faq-question">¿Tiene validez legal este sello digital? <i class="fa-solid fa-chevron-down"></i></button>
+                <div class="faq-answer"><p>Sí. Nuestro sistema garantiza la integridad del documento, alineándose con normativas de firmas electrónicas avanzadas.</p></div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question">¿Qué pasa si alguien edita el PDF? <i class="fa-solid fa-chevron-down"></i></button>
+                <div class="faq-answer"><p>Si se altera aunque sea un espacio, el Hash (ADN del archivo) cambiará y el escáner marcará el documento como "Alterado".</p></div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo"><i class="fa-solid fa-file-shield"></i> GovTech</div>
+            <p>Democratizando el acceso a la fe pública digital.</p>
+            <p class="credits">Proyecto Universitario - Grupo 7 | Juan Gomez & Samuel Brochero</p>
+        </div>
+    </footer>
+
+    <div id="authModal" class="modal-overlay">
+        <div class="modal-content">
+            <button class="close-btn" id="closeAuth"><i class="fa-solid fa-xmark"></i></button>
+            <div class="modal-header">
+                <h2>Acceso Seguro</h2>
+                <p>Ingresa a tu bóveda criptográfica</p>
+            </div>
+            <form id="loginForm">
+                <div class="input-group">
+                    <label>Correo Electrónico</label>
+                    <input type="email" placeholder="ciudadano@correo.com" required>
+                </div>
+                <div class="input-group">
+                    <label>Contraseña</label>
+                    <input type="password" placeholder="••••••••" required>
+                </div>
+                <button type="submit" class="btn-submit">
+                    Iniciar Sesión <i class="fa-solid fa-face-viewfinder"></i>
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <div id="uploadModal" class="modal-overlay">
+        <div class="modal-content modal-large">
+            <button class="close-btn" id="closeUpload"><i class="fa-solid fa-xmark"></i></button>
+            
+            <div id="uploadStep1" class="step-view active">
+                <div class="modal-header">
+                    <h2>Subir Documento</h2>
+                    <p>Paso 1: Carga el archivo PDF que deseas notarizar</p>
+                </div>
+                <div class="drop-zone" id="dropZone">
+                    <i class="fa-solid fa-cloud-arrow-up"></i>
+                    <p>Arrastra tu PDF aquí o <span>haz clic para buscar</span></p>
+                    <input type="file" id="fileInput" hidden accept=".pdf">
+                </div>
+                <div id="fileInfo" class="file-info" style="display: none;">
+                    <i class="fa-solid fa-file-pdf"></i>
+                    <span id="fileName">archivo.pdf</span>
+                    <button id="btnNextToBio" class="btn-submit">Siguiente Paso <i class="fa-solid fa-arrow-right"></i></button>
+                </div>
+            </div>
+
+            <div id="uploadStep2" class="step-view">
+                <div class="modal-header">
+                    <h2>Verificación Biométrica</h2>
+                    <p>Paso 2: Prueba de vida y reconocimiento facial</p>
+                </div>
+                <div class="camera-sim">
+                    <div class="face-overlay"></div>
+                    <i class="fa-solid fa-user-shield"></i>
+                    <p id="bioStatus">Iniciando cámara...</p>
+                </div>
+                <div class="progress-bar-container">
+                    <div class="progress-fill" id="bioProgress"></div>
+                </div>
+            </div>
+
+            <div id="uploadStep3" class="step-view">
+                <div class="modal-header">
+                    <i class="fa-solid fa-circle-check success-icon"></i>
+                    <h2>¡Documento Notarizado!</h2>
+                    <p>Tu certificado ha sido registrado en la red GovTech</p>
+                </div>
+                <div class="certificate-preview">
+                    <div class="cert-header">
+                        <span style="font-weight: bold;">ID: GT-88293-X</span>
+                        <span style="float: right; color: gray;">Aprobado</span>
+                    </div>
+                    <p style="margin-top: 10px;"><strong>Archivo:</strong> <span id="certFile">documento.pdf</span></p>
+                    <div class="qr-placeholder">
+                        <i class="fa-solid fa-qrcode"></i>
+                        <p style="font-size: 12px; margin-top: 5px;">ESCANEAR PARA VERIFICAR</p>
+                    </div>
+                </div>
+                <button class="btn-submit" onclick="location.reload()">Finalizar</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
