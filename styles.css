@@ -81,6 +81,76 @@ footer { background: var(--primary-color); color: var(--white); text-align: cent
 .input-group input { width: 100%; padding: 12px; border: 1px solid #E5E7EB; border-radius: 8px; outline: none; }
 .btn-submit { width: 100%; background: var(--primary-color); color: var(--white); border: none; padding: 15px; border-radius: 8px; font-weight: 600; cursor: pointer; transition: 0.3s; }
 .btn-submit:hover { background: var(--accent-color); }
+/* Estilos para las Vistas de Autenticación (Login/Registro) */
+.auth-view {
+    display: none;
+    animation: fadeIn 0.4s;
+}
+
+.auth-view.active {
+    display: block;
+}
+
+.custom-select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #E5E7EB;
+    border-radius: 8px;
+    outline: none;
+    background-color: var(--white);
+    font-size: 0.95rem;
+    color: var(--text-main);
+    cursor: pointer;
+}
+
+.id-upload-zone {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 15px;
+    border: 2px dashed var(--accent-color);
+    border-radius: 8px;
+    background: #EFF6FF;
+    color: var(--accent-color);
+    cursor: pointer;
+    transition: var(--transition);
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.id-upload-zone:hover {
+    background: #DBEAFE;
+}
+
+.helper-text {
+    display: block;
+    margin-top: 5px;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+}
+
+.error-text {
+    color: #EF4444; /* Rojo para errores */
+    font-size: 0.8rem;
+    margin-top: 5px;
+    display: none;
+    font-weight: 600;
+}
+
+.modal-footer {
+    margin-top: 20px;
+    text-align: center;
+    font-size: 0.9rem;
+    border-top: 1px solid #E5E7EB;
+    padding-top: 15px;
+}
+
+.modal-footer a {
+    color: var(--accent-color);
+    text-decoration: none;
+    font-weight: 600;
+}
 
 /* Simulador UI */
 .step-view { display: none; }
@@ -194,6 +264,34 @@ footer { background: var(--primary-color); color: var(--white); text-align: cent
 .btn-pricing.active { background: var(--accent-color); color: var(--white); border: none; }
 .btn-pricing.active:hover { background: var(--primary-color); }
 /* =========================================
+   ANIMACIONES SCROLL REVEAL
+   ========================================= */
+/* Estado inicial oculto y desplazado hacia abajo */
+.step, .feature-card, .pricing-card, .faq-item {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: all 0.8s cubic-bezier(0.5, 0, 0, 1); /* Curva suave y natural */
+}
+
+/* Retraso escalonado para que no aparezcan todos de golpe (efecto cascada) */
+.step:nth-child(2), .feature-card:nth-child(2), .pricing-card:nth-child(2) { transition-delay: 0.15s; }
+.step:nth-child(3), .feature-card:nth-child(3), .pricing-card:nth-child(3) { transition-delay: 0.3s; }
+.faq-item:nth-child(even) { transition-delay: 0.1s; }
+
+/* Estado cuando JavaScript añade la clase 'revealed' */
+.step.revealed, .feature-card.revealed, .pricing-card.revealed, .faq-item.revealed {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Asegurar que la elevación del plan popular se mantenga después de revelarse */
+.pricing-card.popular.revealed {
+    transform: translateY(-15px);
+}
+.pricing-card.popular.revealed:hover {
+    transform: translateY(-25px);
+}
+/* =========================================
    DISEÑO RESPONSIVE (MÓVILES Y TABLETS) - LANDING PAGE
    ========================================= */
 @media (max-width: 768px) {
@@ -215,7 +313,7 @@ footer { background: var(--primary-color); color: var(--white); text-align: cent
     .section-title h2 { font-size: 2rem; }
     .steps-section, .features-section, .faq-section { padding: 50px 20px; }
     .trust-logos { flex-direction: column; gap: 20px; }
-    
+
     /* Quitar la elevación exagerada en móviles para la tarjeta popular */
     .pricing-card.popular { transform: translateY(0); }
     .pricing-card.popular:hover { transform: translateY(-5px); }

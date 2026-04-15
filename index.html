@@ -153,12 +153,28 @@
         </div>
         <div class="faq-container">
             <div class="faq-item">
-                <button class="faq-question">¿Tiene validez legal este sello digital? <i class="fa-solid fa-chevron-down"></i></button>
-                <div class="faq-answer"><p>Sí. Nuestro sistema garantiza la integridad del documento, alineándose con normativas de firmas electrónicas avanzadas.</p></div>
+                <button class="faq-question">¿Tiene validez legal este sello digital en Colombia? <i class="fa-solid fa-chevron-down"></i></button>
+                <div class="faq-answer"><p>Sí. Nuestro sistema se alinea con la Ley 527 de 1999 sobre comercio electrónico y firmas digitales, garantizando integridad, no repudio y autenticidad del firmante mediante la prueba de vida biométrica.</p></div>
             </div>
+            
             <div class="faq-item">
-                <button class="faq-question">¿Qué pasa si alguien edita el PDF? <i class="fa-solid fa-chevron-down"></i></button>
-                <div class="faq-answer"><p>Si se altera aunque sea un espacio, el Hash (ADN del archivo) cambiará y el escáner marcará el documento como "Alterado".</p></div>
+                <button class="faq-question">¿Qué pasa si alguien edita el PDF después de notarizarlo? <i class="fa-solid fa-chevron-down"></i></button>
+                <div class="faq-answer"><p>Si se altera un solo píxel o letra del documento original, su huella digital (Hash SHA-256) cambiará por completo. Al intentar validarlo en GovTech, el sistema detectará la alteración y marcará el archivo como "Inválido/Falsificado".</p></div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question">¿GovTech tiene acceso al contenido de mis documentos? <i class="fa-solid fa-chevron-down"></i></button>
+                <div class="faq-answer"><p>No. Procesamos tus documentos localmente para extraer la huella criptográfica (Hash). Solo almacenamos el Hash y los datos de la transacción en nuestra bóveda inmutable, garantizando total privacidad sobre el contenido de tus contratos o certificados.</p></div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question">¿Qué formatos de archivo puedo notarizar? <i class="fa-solid fa-chevron-down"></i></button>
+                <div class="faq-answer"><p>Actualmente soportamos documentos en formato PDF (.pdf), ya que es el estándar legal internacional para la preservación de documentos fijos. Próximamente habilitaremos soporte para imágenes (.jpg, .png) de comprobantes fiscales.</p></div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question">¿Varias personas pueden firmar un mismo documento? <i class="fa-solid fa-chevron-down"></i></button>
+                <div class="faq-answer"><p>Sí, la funcionalidad de "Flujos de firma múltiples" está disponible en nuestros planes Profesional y Corporativo. Permite establecer un orden jerárquico donde cada involucrado debe realizar su verificación biométrica para que el documento alcance el estado de "Completado".</p></div>
             </div>
         </div>
     </section>
@@ -171,26 +187,81 @@
         </div>
     </footer>
 
-    <div id="authModal" class="modal-overlay">
+<div id="authModal" class="modal-overlay">
         <div class="modal-content">
             <button class="close-btn" id="closeAuth"><i class="fa-solid fa-xmark"></i></button>
-            <div class="modal-header">
-                <h2>Acceso Seguro</h2>
-                <p>Ingresa a tu bóveda criptográfica</p>
+            
+            <div id="loginView" class="auth-view active">
+                <div class="modal-header">
+                    <h2>Acceso Seguro</h2>
+                    <p>Ingresa a tu bóveda criptográfica</p>
+                </div>
+                <form id="loginForm">
+                    <div class="input-group">
+                        <label>Correo Electrónico</label>
+                        <input type="email" id="loginEmail" placeholder="ciudadano@correo.com" required>
+                    </div>
+                    <div class="input-group">
+                        <label>Contraseña</label>
+                        <input type="password" id="loginPassword" placeholder="••••••••" required>
+                        <p id="loginError" class="error-text" style="display: none;"></p>
+                    </div>
+                    <button type="submit" class="btn-submit">
+                        Iniciar Sesión <i class="fa-solid fa-right-to-bracket"></i>
+                    </button>
+                </form>
+                <div class="modal-footer">
+                    <p>¿No tienes cuenta? <a href="#" id="btnShowRegister">Crear bóveda digital</a></p>
+                </div>
             </div>
-            <form id="loginForm">
-                <div class="input-group">
-                    <label>Correo Electrónico</label>
-                    <input type="email" placeholder="ciudadano@correo.com" required>
+
+            <div id="registerView" class="auth-view">
+                <div class="modal-header">
+                    <h2>Crear Bóveda</h2>
+                    <p>Registro con validación de identidad oficial</p>
                 </div>
-                <div class="input-group">
-                    <label>Contraseña</label>
-                    <input type="password" placeholder="••••••••" required>
+                <form id="registerForm">
+                    <div class="input-group">
+                        <label>Correo Electrónico</label>
+                        <input type="email" id="regEmail" placeholder="tu@correo.com" required>
+                    </div>
+                    
+                    <div class="input-group">
+                        <label>Contraseña Segura</label>
+                        <input type="password" id="regPassword" placeholder="Mínimo 8 caracteres" required>
+                        <small class="helper-text">Debe contener letras, números y mínimo 8 caracteres. (Opcional: . , ! @ #)</small>
+                        <p id="passwordError" class="error-text"></p>
+                    </div>
+
+                    <div class="input-group">
+                        <label>Tipo de Documento</label>
+                        <select id="docType" required class="custom-select">
+                            <option value="">Selecciona un documento...</option>
+                            <option value="CC">Cédula de Ciudadanía (CC)</option>
+                            <option value="TI">Tarjeta de Identidad (TI)</option>
+                            <option value="CE">Cédula de Extranjería (CE)</option>
+                            <option value="PA">Pasaporte</option>
+                        </select>
+                    </div>
+
+                    <div class="input-group">
+                        <label>Subir Documento (Anverso y Reverso)</label>
+                        <label for="idUpload" class="id-upload-zone">
+                            <i class="fa-solid fa-id-card"></i>
+                            <span id="idUploadText">Haz clic para subir foto/PDF</span>
+                        </label>
+                        <input type="file" id="idUpload" accept="image/*, .pdf" hidden required>
+                    </div>
+
+                    <button type="submit" class="btn-submit">
+                        Verificar Identidad <i class="fa-solid fa-user-shield"></i>
+                    </button>
+                </form>
+                <div class="modal-footer">
+                    <p>¿Ya tienes cuenta? <a href="#" id="btnShowLogin">Inicia sesión</a></p>
                 </div>
-                <button type="submit" class="btn-submit">
-                    Iniciar Sesión <i class="fa-solid fa-face-viewfinder"></i>
-                </button>
-            </form>
+            </div>
+
         </div>
     </div>
 

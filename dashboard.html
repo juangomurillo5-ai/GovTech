@@ -18,14 +18,13 @@
                 <i class="fa-solid fa-file-shield"></i> GovTech
             </div>
             <ul class="sidebar-menu">
-                <li class="active"><a href="#"><i class="fa-solid fa-house"></i> Inicio</a></li>
-                <li><a href="#"><i class="fa-solid fa-folder-open"></i> Mis Documentos</a></li>
-                <li><a href="#"><i class="fa-solid fa-file-signature"></i> Nueva Notarización</a></li>
-                <li><a href="#"><i class="fa-solid fa-clock-rotate-left"></i> Historial</a></li>
-                <li><a href="#"><i class="fa-solid fa-gear"></i> Configuración</a></li>
+                <li class="active" data-target="view-inicio"><a href="#"><i class="fa-solid fa-house"></i> Inicio</a></li>
+                <li data-target="view-documentos"><a href="#"><i class="fa-solid fa-folder-open"></i> Mis Documentos</a></li>
+                <li data-target="view-nueva"><a href="#"><i class="fa-solid fa-file-signature"></i> Nueva Notarización</a></li>
+                <li data-target="view-validador"><a href="#"><i class="fa-solid fa-microscope"></i> Validar Documento</a></li>
             </ul>
             <div class="sidebar-footer">
-                <a href="index.html" class="logout-btn"><i class="fa-solid fa-right-from-bracket"></i> Cerrar Sesión</a>
+                <a href="#" id="btnLogout" class="logout-btn"><i class="fa-solid fa-right-from-bracket"></i> Cerrar Sesión</a>
             </div>
         </aside>
 
@@ -33,95 +32,198 @@
             <header class="topbar">
                 <div class="search-bar">
                     <i class="fa-solid fa-magnifying-glass"></i>
-                    <input type="text" placeholder="Buscar documento por ID o nombre...">
+                    <input type="text" id="searchInput" placeholder="Buscar por nombre o Hash...">
                 </div>
                 <div class="user-profile">
-                    <span class="user-name">Hola, Juan</span>
+                    <span class="user-name" id="userNameDisplay">Hola, Usuario</span>
                     <div class="avatar"><i class="fa-solid fa-user"></i></div>
                 </div>
             </header>
 
             <div class="workspace">
-                <div class="welcome-banner">
-                    <h2>Resumen de tu Bóveda</h2>
-                    <p>Gestiona y verifica la integridad de tus documentos notarizados.</p>
+                
+                <div id="view-inicio" class="view-section active">
+                    <div class="welcome-banner">
+                        <h2>Resumen de tu Bóveda</h2>
+                        <p>Gestiona y verifica la integridad de tus documentos notarizados.</p>
+                    </div>
+
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-icon" style="background: #EBF2FF; color: var(--accent-color);"><i class="fa-solid fa-file-lines"></i></div>
+                            <div class="stat-details">
+                                <h3>Total Documentos</h3>
+                                <p class="stat-number" id="statTotal">0</p>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon" style="background: #D1FAE5; color: #10B981;"><i class="fa-solid fa-circle-check"></i></div>
+                            <div class="stat-details">
+                                <h3>Notarizados</h3>
+                                <p class="stat-number" id="statVerified">0</p>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon" style="background: #FEF3C7; color: #F59E0B;"><i class="fa-solid fa-clock"></i></div>
+                            <div class="stat-details">
+                                <h3>En Proceso</h3>
+                                <p class="stat-number" id="statPending">0</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="recent-docs-section">
+                        <div class="section-header">
+                            <h3>Actividad Reciente</h3>
+                            <button class="btn-primary" id="btnGoToNew"><i class="fa-solid fa-plus"></i> Nuevo Documento</button>
+                        </div>
+                        <div class="table-container">
+                            <table class="docs-table">
+                                <thead>
+                                    <tr>
+                                        <th>Nombre del Archivo</th>
+                                        <th>ID de Hash</th>
+                                        <th>Fecha</th>
+                                        <th>Estado</th>
+                                        <th>Acción</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="docsTableBody">
+                                    </tbody>
+                            </table>
+                        </div>
+                    </div>
                 </div>
 
-                <div class="stats-grid">
-                    <div class="stat-card">
-                        <div class="stat-icon" style="background: #EBF2FF; color: var(--accent-color);">
-                            <i class="fa-solid fa-file-lines"></i>
-                        </div>
-                        <div class="stat-details">
-                            <h3>Total Documentos</h3>
-                            <p class="stat-number">12</p>
-                        </div>
+                <div id="view-documentos" class="view-section">
+                    <div class="welcome-banner">
+                        <h2>Todos tus Documentos</h2>
+                        <p>Historial completo de tu bóveda criptográfica.</p>
                     </div>
-                    <div class="stat-card">
-                        <div class="stat-icon" style="background: #D1FAE5; color: #10B981;">
-                            <i class="fa-solid fa-circle-check"></i>
-                        </div>
-                        <div class="stat-details">
-                            <h3>Verificados</h3>
-                            <p class="stat-number">10</p>
-                        </div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-icon" style="background: #FEF3C7; color: #F59E0B;">
-                            <i class="fa-solid fa-clock"></i>
-                        </div>
-                        <div class="stat-details">
-                            <h3>En Proceso</h3>
-                            <p class="stat-number">2</p>
+                    <div class="recent-docs-section">
+                        <div class="table-container">
+                            <table class="docs-table">
+                                <thead>
+                                    <tr>
+                                        <th>Nombre del Archivo</th>
+                                        <th>ID de Hash</th>
+                                        <th>Fecha</th>
+                                        <th>Estado</th>
+                                        <th>Acción</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="fullDocsTableBody">
+                                    </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
 
-                <div class="recent-docs-section">
-                    <div class="section-header">
-                        <h3>Actividad Reciente</h3>
-                        <button class="btn-primary" id="btnNewDoc"><i class="fa-solid fa-plus"></i> Nuevo Documento</button>
+                <div id="view-nueva" class="view-section">
+                    <div class="welcome-banner">
+                        <h2>Nueva Notarización</h2>
+                        <p>Protege un nuevo documento con tecnología Blockchain simulada.</p>
                     </div>
                     
-                    <div class="table-container">
-                        <table class="docs-table">
-                            <thead>
-                                <tr>
-                                    <th>Nombre del Archivo</th>
-                                    <th>ID de Hash</th>
-                                    <th>Fecha</th>
-                                    <th>Estado</th>
-                                    <th>Acción</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td><i class="fa-solid fa-file-pdf" style="color: #EF4444;"></i> Contrato_Arrendamiento_2026.pdf</td>
-                                    <td class="hash-id">GT-A8F2...9C3</td>
-                                    <td>14 Abr 2026</td>
-                                    <td><span class="badge badge-success">Notarizado</span></td>
-                                    <td><button class="btn-action"><i class="fa-solid fa-eye"></i></button></td>
-                                </tr>
-                                <tr>
-                                    <td><i class="fa-solid fa-file-pdf" style="color: #EF4444;"></i> Certificado_Estudios_SENA.pdf</td>
-                                    <td class="hash-id">GT-B71X...1A9</td>
-                                    <td>12 Abr 2026</td>
-                                    <td><span class="badge badge-success">Notarizado</span></td>
-                                    <td><button class="btn-action"><i class="fa-solid fa-eye"></i></button></td>
-                                </tr>
-                                <tr>
-                                    <td><i class="fa-solid fa-file-pdf" style="color: #EF4444;"></i> Acta_Junta_Socios.pdf</td>
-                                    <td class="hash-id">Pendiente...</td>
-                                    <td>Hoy, 10:30 AM</td>
-                                    <td><span class="badge badge-warning">Procesando</span></td>
-                                    <td><button class="btn-action disabled"><i class="fa-solid fa-spinner fa-spin"></i></button></td>
-                                </tr>
-                            </tbody>
-                        </table>
+                    <div class="recent-docs-section" style="max-width: 600px; margin: 0 auto;">
+                        <form id="newDocForm">
+                            <div class="drop-zone" id="dashDropZone" style="margin-bottom: 20px;">
+                                <i class="fa-solid fa-cloud-arrow-up"></i>
+                                <p id="dashDropText">Arrastra tu PDF aquí o <span>haz clic para buscar</span></p>
+                                <input type="file" id="dashFileInput" hidden accept=".pdf" required>
+                            </div>
+                            
+                            <button type="submit" class="btn-primary" style="width: 100%;" id="btnSubmitDoc" disabled>
+                                Generar Sello Criptográfico <i class="fa-solid fa-lock"></i>
+                            </button>
+                            
+                            <div class="progress-bar-container" id="uploadProgressContainer" style="display: none; margin-top: 15px;">
+                                <div class="progress-fill" id="uploadProgress"></div>
+                            </div>
+                            <p id="uploadStatus" style="text-align: center; margin-top: 10px; font-size: 0.9rem; color: var(--text-muted);"></p>
+                        </form>
+                    </div>
+                </div>
+                <div id="view-validador" class="view-section">
+                    <div class="welcome-banner">
+                        <h2>Auditoría y Validación</h2>
+                        <p>Comprueba matemáticamente si un documento es auténtico o si ha sido alterado.</p>
+                    </div>
+                    
+                    <div class="recent-docs-section" style="max-width: 600px; margin: 0 auto;">
+                        <div class="drop-zone" id="valDropZone" style="margin-bottom: 20px;">
+                            <i class="fa-solid fa-file-shield"></i>
+                            <p id="valDropText">Arrastra el documento a auditar o <span>haz clic para buscar</span></p>
+                            <input type="file" id="valFileInput" hidden accept=".pdf">
+                        </div>
+                        
+                        <button class="btn-primary" style="width: 100%;" id="btnValidateDoc" disabled>
+                            Auditar Integridad (SHA-256) <i class="fa-solid fa-magnifying-glass"></i>
+                        </button>
+                        
+                        <div class="progress-bar-container" id="valProgressContainer" style="display: none; margin-top: 15px;">
+                            <div class="progress-fill" id="valProgress"></div>
+                        </div>
+                        <p id="valStatus" style="text-align: center; margin-top: 10px; font-size: 0.9rem; color: var(--text-muted);"></p>
+
+                        <div id="valResultArea" style="display: none;"></div>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+    </div>
+    <div id="certModal" class="modal-overlay">
+        <div class="modal-content modal-large">
+            <button class="close-btn" id="closeCert"><i class="fa-solid fa-xmark"></i></button>
+            
+            <div class="certificate-wrapper">
+                <div class="cert-header-official">
+                    <i class="fa-solid fa-file-shield cert-logo"></i>
+                    <h2>Certificado de Notarización Digital</h2>
+                    <p>Emitido por la Red Criptográfica GovTech</p>
+                </div>
+                
+                <div class="cert-body">
+                    <div class="cert-row">
+                        <span class="cert-label">ID de Transacción:</span> 
+                        <span class="cert-value" id="modalCertId">...</span>
+                    </div>
+                    <div class="cert-row">
+                        <span class="cert-label">Fecha de Sello:</span> 
+                        <span class="cert-value" id="modalCertDate">...</span>
+                    </div>
+                    <div class="cert-row">
+                        <span class="cert-label">Titular de la Bóveda:</span> 
+                        <span class="cert-value" id="modalCertUser">...</span>
+                    </div>
+                    <div class="cert-row">
+                        <span class="cert-label">Archivo Original:</span> 
+                        <span class="cert-value" id="modalCertFile" style="font-weight: 600; color: var(--primary-color);">...</span>
+                    </div>
+                    <div class="cert-row hash-row">
+                        <span class="cert-label">Hash SHA-256 (Huella Digital):</span> 
+                        <span class="cert-value hash-box" id="modalCertHash">...</span>
+                    </div>
+                </div>
+                
+                <div class="cert-footer-official">
+                    <div class="qr-box">
+                        <i class="fa-solid fa-qrcode"></i>
+                        <small>Escanear para verificar</small>
+                    </div>
+                    <div class="cert-signature">
+                        <p class="status-verified"><i class="fa-solid fa-circle-check"></i> Válido e Inmutable</p>
+                        <div class="signature-line"></div>
+                        <p>Sistema Automatizado GovTech</p>
                     </div>
                 </div>
             </div>
-        </main>
+            
+            <button class="btn-primary" id="btnDownloadCert" style="width: 100%; margin-top: 25px;">
+                <i class="fa-solid fa-download"></i> Descargar PDF Oficial
+            </button>
+        </div>
     </div>
 
     <script src="dashboard.js"></script>
