@@ -98,6 +98,102 @@ footer { background: var(--primary-color); color: var(--white); text-align: cent
 .qr-placeholder { text-align: center; padding: 15px; margin-top: 15px; background: white; border: 1px dashed #ccc; }
 .qr-placeholder i { font-size: 60px; }
 /* =========================================
+   ESTILOS DE PLANES Y PRECIOS
+   ========================================= */
+.pricing-section {
+    padding: 100px 20px;
+    background: var(--bg-light); /* Fondo ligeramente diferente para separar secciones */
+}
+
+.pricing-grid {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    max-width: 1100px;
+    margin: 0 auto;
+    flex-wrap: wrap; /* Permite que se apilen en móviles */
+}
+
+.pricing-card {
+    background: var(--white);
+    border: 1px solid #E5E7EB;
+    border-radius: 16px;
+    padding: 40px 30px;
+    width: 330px;
+    text-align: center;
+    transition: var(--transition);
+    position: relative;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+}
+
+.pricing-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilos especiales para el plan destacado */
+.pricing-card.popular {
+    border: 2px solid var(--accent-color);
+    transform: translateY(-15px); /* Lo hace resaltar hacia arriba */
+    box-shadow: 0 10px 15px -3px rgba(37, 99, 235, 0.2);
+}
+
+.pricing-card.popular:hover {
+    transform: translateY(-25px);
+}
+
+.popular-badge {
+    position: absolute;
+    top: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--accent-color);
+    color: var(--white);
+    padding: 5px 20px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.card-header {
+    margin-bottom: 30px;
+    border-bottom: 1px solid #E5E7EB;
+    padding-bottom: 20px;
+}
+
+.card-header h3 { color: var(--text-main); font-size: 1.3rem; margin-bottom: 10px; }
+
+.price { font-size: 2.5rem; font-weight: 800; color: var(--primary-color); }
+.price span { font-size: 1rem; color: var(--text-muted); font-weight: 400; }
+.billing { color: var(--text-muted); font-size: 0.9rem; margin-top: 5px; }
+
+.features-list { list-style: none; text-align: left; margin-bottom: 30px; }
+.features-list li { margin-bottom: 15px; color: var(--text-main); display: flex; align-items: center; gap: 10px; font-size: 0.95rem; }
+.features-list li i { color: #10B981; /* Verde éxito */ }
+.features-list li.disabled { color: #9CA3AF; text-decoration: line-through; }
+.features-list li.disabled i { color: #9CA3AF; }
+
+/* Botones de los planes */
+.btn-pricing {
+    display: block;
+    width: 100%;
+    padding: 15px;
+    border-radius: 8px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: var(--transition);
+    background: var(--white);
+    color: var(--primary-color);
+    border: 2px solid var(--primary-color);
+}
+
+.btn-pricing:hover { background: var(--primary-color); color: var(--white); }
+
+.btn-pricing.active { background: var(--accent-color); color: var(--white); border: none; }
+.btn-pricing.active:hover { background: var(--primary-color); }
+/* =========================================
    DISEÑO RESPONSIVE (MÓVILES Y TABLETS) - LANDING PAGE
    ========================================= */
 @media (max-width: 768px) {
@@ -119,4 +215,8 @@ footer { background: var(--primary-color); color: var(--white); text-align: cent
     .section-title h2 { font-size: 2rem; }
     .steps-section, .features-section, .faq-section { padding: 50px 20px; }
     .trust-logos { flex-direction: column; gap: 20px; }
+    
+    /* Quitar la elevación exagerada en móviles para la tarjeta popular */
+    .pricing-card.popular { transform: translateY(0); }
+    .pricing-card.popular:hover { transform: translateY(-5px); }
 }
